@@ -21,8 +21,11 @@ app.use(logger())
 app.use(require('koa-static')(__dirname + '/public'))
 
 app.use(views(__dirname + '/views', {
-  extension: 'pug'
+  extension: 'ejs'
 }))
+
+// 终端输出
+console.log(process.env.NODE_ENV)
 
 // logger
 app.use(async (ctx, next) => {
