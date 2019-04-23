@@ -5,6 +5,7 @@ const json = require('koa-json')
 const onerror = require('koa-onerror')
 const bodyparser = require('koa-bodyparser')
 const log = require('./middleware/log4');
+const cors = require('koa2-cors');
 
 const index = require('./routes/index')
 const users = require('./routes/users')
@@ -12,16 +13,14 @@ const users = require('./routes/users')
 // error handler
 onerror(app)
 
-// logger
-app.use(log);
-
 // middlewares
+app.use(log);
+app.use(cors());
 app.use(bodyparser({
   enableTypes: ['json', 'form', 'text']
 }))
 app.use(json())
 app.use(require('koa-static')(__dirname + '/public'))
-
 app.use(views(__dirname + '/views', {
   extension: 'ejs'
 }))
