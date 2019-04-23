@@ -4,11 +4,10 @@ const views = require('koa-views')
 const json = require('koa-json')
 const onerror = require('koa-onerror')
 const bodyparser = require('koa-bodyparser')
+const log = require('./middleware/log4');
 
 const index = require('./routes/index')
 const users = require('./routes/users')
-const logUtil = require('./utils/log_utils');
-const log = require('./middleware/log4');
 
 // error handler
 onerror(app)
