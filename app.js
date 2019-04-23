@@ -8,30 +8,13 @@ const bodyparser = require('koa-bodyparser')
 const index = require('./routes/index')
 const users = require('./routes/users')
 const logUtil = require('./utils/log_utils');
+const log = require('./middleware/log4');
+
 // error handler
 onerror(app)
 
-
 // logger
-app.use(async (ctx, next) => {
-  //响应开始时间
-  const start = new Date();
-  //响应间隔时间
-  var ms;
-  try {
-    //开始进入到下一个中间件
-    await next();
-
-    ms = new Date() - start;
-    //记录响应日志
-    logUtil.logResponse(ctx, ms);
-
-  } catch (error) {
-    ms = new Date() - start;
-    //记录异常日志
-    logUtil.logError(ctx, error, ms);
-  }
-});
+app.use(log);
 
 // middlewares
 app.use(bodyparser({
