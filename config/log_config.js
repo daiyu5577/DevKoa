@@ -52,6 +52,7 @@ module.exports = {
       "path": responsePath
     },
   },
+  replaceConsole: true,
   //供外部调用的名称和对应设置定义
   categories: {
     "default": {
