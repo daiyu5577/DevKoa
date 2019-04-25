@@ -28,9 +28,6 @@ var responseLogPath = baseLogPath + responsePath + "/" + responseFileName;
 module.exports = {
   //日志格式等设置
   appenders: {
-    "rule-console": {
-      "type": "console"
-    },
     "errorLogger": {
       "type": "dateFile",
       "filename": errorLogPath,
@@ -56,8 +53,8 @@ module.exports = {
   //供外部调用的名称和对应设置定义
   categories: {
     "default": {
-      "appenders": ["rule-console"],
-      "level": "all"
+      "appenders": ["resLogger"],
+      "level": "info"
     },
     "resLogger": {
       "appenders": ["resLogger"],
@@ -66,10 +63,6 @@ module.exports = {
     "errorLogger": {
       "appenders": ["errorLogger"],
       "level": "error"
-    },
-    "http": {
-      "appenders": ["resLogger"],
-      "level": "info"
     }
   },
   "baseLogPath": baseLogPath

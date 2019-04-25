@@ -10,11 +10,12 @@ module.exports = async (ctx, next) => {
 
     ms = new Date() - start;
     //记录响应日志
-    logUtil.logResponse(ctx, ms);
+    logUtil.resLogger(ctx, ms);
 
   } catch (error) {
+    // catch后 app.on error 捕获不到完整的ERROR信息
     ms = new Date() - start;
     //记录异常日志
-    logUtil.logError(ctx, error, ms);
+    logUtil.errLogger(ctx, error, ms);
   }
 }
